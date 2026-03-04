@@ -1,0 +1,58 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+*.egg-info/
+dist/
+build/
+
+# Tests
+.pytest_cache
+.coverage
+htmlcov/
+.tox
+
+# IDEs
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project
+.env
+.env.local
+config/.secrets.toml
+*.db
+*.log
+logs/
+media/uploads/
+minio_data/
+postgres_data/
+
+# Docker
+.docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml
+
+# Misc
+README.md
+LICENSE
+.gitkeep
+*.md

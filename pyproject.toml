@@ -1,0 +1,14 @@
+[tool.ruff]
+# Set the maximum line length (88 is Black's default)
+line-length = 88
+target-version = "py310"
+# Standard excludes plus your migrations folder
+extend-exclude = ["alembic", "migrations"]
+
+[tool.ruff.lint]
+# E/W: pycodestyle, F: Pyflakes, I: isort, B: flake8-bugbear, S: flake8-bandit (security)
+select = ["E", "W", "F", "I", "B", "S", "UP"]
+ignore = ["E501"] # Ignore line-length violations (handled by formatter)
+
+[tool.ruff.format]
+quote-style = "double"

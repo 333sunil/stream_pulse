@@ -1,0 +1,12 @@
+[default]
+APP_NAME = "StreamPulse"
+DB_HOST = "localhost"
+DB_PORT = 5433
+DB_NAME = "streampulse"
+MEDIA_PATH = "media/uploads"
+ENDPOINT = "localhost:9000"
+
+[development]
+DEBUG = true
+HOST = "127.0.0.1"
+PORT = 8000
