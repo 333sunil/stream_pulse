@@ -1,12 +1,13 @@
 from contextlib import asynccontextmanager
 
 import uvicorn
-from fastapi import FastAPI, Request
+from fastapi import Depends, FastAPI, Request
 from fastapi.responses import JSONResponse
 from loguru import logger
 
 from app.api.v1 import media
 from app.core.config import settings
+from app.api.ldap_user import get_current_user_ldap
 
 
 # 2. Modern Lifespan Handler
@@ -32,7 +33,7 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 
 # 5. Include Routers
-app.include_router(media.router, prefix="/api/v1/media", tags=["Media"])
+app.include_router(media.router, prefix="/api/v1/media", tags=["Media"], dependencies=[Depends(get_current_user_ldap)])
 
 
 @app.get("/health")

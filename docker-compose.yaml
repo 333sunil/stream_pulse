@@ -40,6 +40,35 @@ services:
     networks:
       - stream_pulse_network
 
+  openldap:
+    image: osixia/openldap:1.5.0
+    container_name: openldap
+    hostname: openldap  # Explicitly set hostname
+    environment:
+      - LDAP_ORGANISATION=Dev-Lab
+      - LDAP_DOMAIN=example.org
+      - LDAP_ADMIN_PASSWORD=admin
+      - LDAP_TLS=false
+    ports:
+      - "389:389"
+    networks:
+      - stream_pulse_network
+
+  phpldapadmin:
+    image: osixia/phpldapadmin:0.9.0
+    container_name: phpldapadmin
+    environment:
+      - PHPLDAPADMIN_LDAP_HOSTS=openldap
+      - PHPLDAPADMIN_HTTPS=false
+      # Skip trying to use the 'example.com' default
+      - PHPLDAPADMIN_SERVER_ADMIN_RESPONDER=admin@example.org 
+    ports:
+      - "8081:80"
+    depends_on:
+      - openldap
+    networks:
+      - stream_pulse_network
+
 volumes:
   postgres_data:
     driver: local
