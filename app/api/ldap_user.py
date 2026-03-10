@@ -2,7 +2,7 @@ from fastapi import Depends, HTTPException, status, Request
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from typing import Annotated
 
-from app.core.ldap import authenticate_user_simple
+from app.core.ldap import authenticate_user_cached
 
 security = HTTPBasic()
 
@@ -10,7 +10,7 @@ def get_current_user_ldap(
     credentials: Annotated[HTTPBasicCredentials, Depends(security)]
 ):
     # Use the pooled method we discussed
-    user = authenticate_user_simple(
+    user = authenticate_user_cached(
         credentials.username, 
         credentials.password
     )
